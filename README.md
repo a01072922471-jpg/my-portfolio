@@ -1,0 +1,179 @@
+[index.html](https://github.com/user-attachments/files/26341330/index.html)
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안치영 포트폴리오</title>
+    <style>
+        /* 1. 기본 설정 및 부드러운 스크롤 */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        /* 2. 상단 메뉴 바 (Navbar) 디자인 */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky; /* 스크롤해도 상단 고정 */
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+        .nav-logo {
+            font-weight: bold;
+            text-decoration: none;
+            color: #ff5733;
+            font-size: 1.2rem;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #ff5733;
+        }
+
+        /* 3. 히어로 섹션 (대문) */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('back1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #ff5733;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* 4. 본문 섹션 공통 스타일 */
+        section {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ff5733;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* 5. 프로젝트 카드 스타일 */
+        .project-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .project-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* 6. 푸터 */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">안치영 포트폴리오</a>
+            <ul class="nav-menu">
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">My Projects</a></li>
+                <li><a href="mailto:a01072922471@naver.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <img src="port1.jpg" alt="안치영 프로필">
+        <h1>안녕하세요, 안치영입니다!</h1>
+        <p>코딩을 배우며 성장하는 중입니다.</p>
+        <a href="#projects" class="btn">제 작업물 보기</a>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>파이썬과 웹 기술에 관심이 많은 열정적인 학습자입니다.</p>
+        <p>현재 나만의 갤러리 포트폴리오 사이트를 직접 코딩하며 만들어가고 있습니다.</p>
+    </section>
+
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project-container">
+            <div class="project-card">
+                <h3>프로젝트 1: 첫 웹사이트</h3>
+                <p>HTML과 CSS를 공부하며 만든 첫 번째 결과물입니다.</p>
+            </div>
+            <div class="project-card">
+                <h3>프로젝트 2: 데이터 분석</h3>
+                <p>파이썬을 활용해 데이터를 수집하고 시각화하는 연습을 하고 있습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 안치영. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
