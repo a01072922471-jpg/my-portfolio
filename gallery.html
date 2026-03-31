@@ -19,6 +19,8 @@
             margin: 50px auto;
             padding: 20px;
         }
+         /* 사진이 절대 잘리지 않게 하는 강력한 설정 */
+
 
         .work-item {
             background: white;
@@ -28,22 +30,24 @@
             transition: transform 0.3s ease;
         }
         .work-item:hover { transform: translateY(-10px); }
-        
-        .work-item img {width: 100%;  height: auto; /* 높이를 고정하지 않고 사진 비율에 맞춤 */
-         display: block;
-         object-fit: contain; /* 상자 안에 사진 전체가 들어가게 함 */
-         background-color: #eee; /* 사진 여백이 생길 경우 대비한 연한 배경색 */}
-        .work-info { padding: 20px; }
-        .work-info h2 { color: #333; font-size: 1.2rem; margin: 0 0 10px 0; }
-        .work-info p { color: #666; font-size: 0.9rem; line-height: 1.6; margin: 0; }
 
-        /* 모바일용 화면 최적화 (화면 폭이 600px 이하일 때) */
+        .work-item img {
+         width: 100% !important;   /* 가로를 상자에 꽉 맞춤 */
+         height: auto !important;    /* 높이를 사진 비율에 따라 무조건 자동으로 조절 */
+         max-height: none !important; /* 높이 제한을 완전히 해제 */
+        display: block;
+        object-fit: contain;       /* 사진 전체가 상자 안에 다 들어오게 함 */
+        border-bottom: 1px solid #eee; /* 사진과 글자 사이 구분선 */
+}
+        /* 모바일 전용 추가 설정 */
         @media (max-width: 600px) {
-        .gallery-container {
-         grid-template-columns: 1fr; /* 무조건 한 줄로 크게 보여줌 */
-            gap: 20px;
-            padding: 10px;
+        .work-item {
+        margin-bottom: 30px; /* 카드 사이 간격을 넉넉히 */
     }
+        .gallery-container {
+        padding: 10px; /* 좌우 여백을 줄여 사진을 더 크게 */
+    }
+       
     .work-info h2 {
         font-size: 1.1rem; /* 제목 크기 살짝 줄임 */
     }
