@@ -47,7 +47,16 @@
         font-weight: bold;
         text-decoration: none;
         color: #ff5733; /* 주황색 로고 */
-        font-size: 1.2rem;
+        font-size: 1.2rem; 
+        /* 사진에 마우스를 올리면 1.05배 커지고 부드럽게 움직임 */
+        .work-item img {
+    transition: transform 0.3s ease; /* 부드러운 변화 효과 */
+}
+
+        .work-item img:hover {
+        transform: scale(1.05); /* 마우스 올리면 5% 커짐 */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* 그림자도 더 진해짐 */
+}
 }
     </style>
 </head>
