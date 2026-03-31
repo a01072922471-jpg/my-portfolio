@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안치영의 작품 갤러리</title>
+    <style>
+        body { font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .navbar { background: white; height: 60px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .nav-container { width: 100%; max-width: 1000px; display: flex; justify-content: space-between; padding: 0 20px; }
+        .nav-logo { font-weight: bold; text-decoration: none; color: #ff5733; }
+        .nav-menu { display: flex; list-style: none; gap: 20px; }
+        .nav-menu a { text-decoration: none; color: #333; font-weight: bold; }
+
+        .gallery-section { max-width: 1000px; margin: 50px auto; padding: 20px; text-align: center; }
+        h1 { color: #333; margin-bottom: 40px; }
+
+        .work-item { background: white; margin-bottom: 50px; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
+        .work-item img { width: 100%; max-width: 600px; border-radius: 10px; height: auto; }
+        .work-info { padding: 20px; }
+        .work-info h2 { color: #ff5733; }
+        .work-info p { color: #666; line-height: 1.8; }
+
+        footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">← 메인으로 돌아가기</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="gallery-section">
+        <h1>나의 작품 갤러리</h1>
+
+        <div class="work-item">
+            <img src="무희의 무상.jpg" alt="작품 1"> <div class="work-info">
+                <h2>첫 번째 작품 제목</h2>
+                <p>이 작품은 한국의 음악과 예술이 많이 성장하여 많은 사람이 축하하며 즐거워하고 있다. 이를 무희가 무념 무상으로 도를 닦는 마음으로 ....</p>
+            </div>
+        </div>
+
+        <div class="work-item">
+            <img src="슬픈연가.jpg" alt="작품 2"> <div class="work-info">
+                <h2>두 번째 작품 제목</h2>
+                <p>슬픈연가는 K트롯가수가 구슬픈 연가를 사랑의 아픔을 노래하고 있다. </p>
+            </div>
+        </div>
+        <div class="work-item">
+            <img src="잃어버린시간.jpg" alt="작품 3"> <div class="work-info">
+                <h2>세 번째 작품 제목</h2>
+                <p> 이작품은 피카소의 게르니카 작품에 영감을 받아 현대전쟁의 드론과 미사일 공격으로 아픔을 가진 이들의 한과 시간을 그려려 했다. </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 안치영. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
