@@ -3,101 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>안치영의 작품 갤러리</title>
+    <title>안치영의 자동화 갤러리</title>
     <style>
-        body { font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        .navbar { background: white; height: 60px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .nav-container { width: 100%; max-width: 1000px; display: flex; justify-content: space-between; padding: 0 20px; }
-        .nav-logo { font-weight: bold; text-decoration: none; color: #ff5733; }
-        .nav-menu { display: flex; list-style: none; gap: 20px; }
-        .nav-menu a { text-decoration: none; color: #333; font-weight: bold; }
+        body { font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; }
+        .navbar { background: white; height: 60px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .nav-container { width: 100%; max-width: 1000px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { font-weight: bold; text-decoration: none; color: #ff5733; font-size: 1.2rem; }
+        
+        /* 갤러리 그리드 레이아웃 */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
 
-        .gallery-section { max-width: 1000px; margin: 50px auto; padding: 20px; text-align: center; }
-        h1 { color: #333; margin-bottom: 40px; }
-
-        .work-item { background: white; margin-bottom: 50px; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
-        .work-item img { width: 100%; max-width: 600px; border-radius: 10px; height: auto; }
+        .work-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .work-item:hover { transform: translateY(-10px); }
+        .work-item img { width: 100%; height: 250px; object-fit: cover; }
         .work-info { padding: 20px; }
-        .work-info h2 { color: #ff5733; }
-        .work-info p { color: #666; line-height: 1.8; }
-
-        footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 50px; }
-
-            /* 메뉴 바를 메인과 똑같이 예쁘게 고치기 */
-        .navbar {
-        background-color: white;
-        height: 60px;
-         display: flex;
-         justify-content: center;
-          align-items: center;
-         position: sticky;
-         top: 0;
-         z-index: 1000;
-         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-        .nav-container {
-        display: flex;
-        justify-content: space-between; /* 양 끝으로 벌리기 */
-        align-items: center;
-        width: 100%;
-        max-width: 900px;
-        padding: 0 20px;
-}
-        .nav-logo {
-        font-weight: bold;
-        text-decoration: none;
-        color: #ff5733; /* 주황색 로고 */
-        font-size: 1.2rem; 
-        /* 사진에 마우스를 올리면 1.05배 커지고 부드럽게 움직임 */
-        .work-item img {
-    transition: transform 0.3s ease; /* 부드러운 변화 효과 */
-}
-
-        .work-item img:hover {
-        transform: scale(1.05); /* 마우스 올리면 5% 커짐 */
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* 그림자도 더 진해짐 */
-}
-}
+        .work-info h2 { color: #333; font-size: 1.2rem; margin: 0 0 10px 0; }
+        .work-info p { color: #666; font-size: 0.9rem; line-height: 1.6; margin: 0; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">← 메인으로 돌아가기</a>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-            </ul>
+            <a href="index.html" class="nav-logo">← 안치영 포트폴리오</a>
         </div>
     </nav>
 
-    <section class="gallery-section">
-        <h1>나의 작품 갤러리</h1>
+    <div class="gallery-container" id="galleryGrid"></div>
 
-        <div class="work-item">
-            <img src="무희의 무상.jpg" alt="작품 1"> <div class="work-info">
-                <h2>첫 번째 작품 제목</h2>
-                <p>이 작품은 한국의 음악과 예술이 많이 성장하여 많은 사람이 축하하며 즐거워하고 있다. 이를 무희가 무념 무상으로 도를 닦는 마음으로 ....</p>
-            </div>
-        </div>
+    <script>
+        // ★ 이 부분이 안치영 님의 '작품 관리 대장'입니다!
+        // 새로운 작품이 생기면 아래 { } 덩어리 하나만 복사해서 추가하면 됩니다.
+        const myWorks = [
+            {
+                title: "슬픈연가",
+                desc: "이 작품은 코딩과 예술의 조화를 생각하며 만들었습니다.",
+                img: "슬픈연가.jpg"
+            },
+            {
+                title: "무희의 무상",
+                desc: "푸른 색조를 사용하여 고요하고 슬픈 감정을 표현했습니다.",
+                img: "무희의 무상.jpg"
+                
+            },
+            {
+                title: "잃어버린시간",
+                desc: "파이썬 분석 결과를 시각화한 현대적인 작품입니다.",
+                img: "잃어버린시간.jpg"
+            }
+        ];
 
-        <div class="work-item">
-            <img src="슬픈연가.jpg" alt="작품 2"> <div class="work-info">
-                <h2>두 번째 작품 제목</h2>
-                <p>슬픈연가는 K트롯가수가 구슬픈 연가를 사랑의 아픔을 노래하고 있다. </p>
-            </div>
-        </div>
-        <div class="work-item">
-            <img src="잃어버린시간.jpg" alt="작품 3"> <div class="work-info">
-                <h2>세 번째 작품 제목</h2>
-                <p> 이작품은 피카소의 게르니카 작품에 영감을 받아 현대전쟁의 드론과 미사일 공격으로 아픔을 가진 이들의 한과 시간을 그려려 했다. </p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 안치영. All rights reserved.</p>
-    </footer>
+        // 대장에 적힌 목록을 화면에 자동으로 그려주는 마법의 코드
+        const grid = document.getElementById('galleryGrid');
+        
+        myWorks.forEach(work => {
+            const card = `
+                <div class="work-item">
+                    <img src="${work.img}" alt="${work.title}">
+                    <div class="work-info">
+                        <h2>${work.title}</h2>
+                        <p>${work.desc}</p>
+                    </div>
+                </div>
+            `;
+            grid.innerHTML += card;
+        });
+    </script>
 
 </body>
 </html>
