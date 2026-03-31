@@ -3,55 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>안치영의 자동화 갤러리</title>
+    <title>안치영의 프리미엄 갤러리</title>
     <style>
-        body { font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; }
-        .navbar { background: white; height: 60px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .nav-container { width: 100%; max-width: 1000px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .nav-logo { font-weight: bold; text-decoration: none; color: #ff5733; font-size: 1.2rem; }
+        /* 기본 변수 설정 (다크 모드 대응) */
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+        }
+        [data-theme='dark'] {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --nav-bg: rgba(30, 30, 30, 0.9);
+        }
+
+        body { font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); transition: 0.3s; }
         
-        /* 갤러리 그리드 레이아웃 */
+        /* 메뉴 바 및 도구 모음 */
+        .navbar { background: var(--nav-bg); height: 70px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); backdrop-filter: blur(5px); }
+        .nav-container { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { font-weight: bold; text-decoration: none; color: #ff5733; font-size: 1.2rem; }
+
+        /* 필터 버튼 스타일 */
+        .filter-container { text-align: center; margin: 30px 0; }
+        .filter-btn { 
+            background: var(--card-bg); border: 1px solid #ddd; padding: 8px 20px; margin: 5px; 
+            border-radius: 20px; cursor: pointer; color: var(--text-color); font-weight: bold; transition: 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active { background: #ff5733; color: white; border-color: #ff5733; }
+
+        /* 다크 모드 토글 버튼 */
+        .theme-toggle { background: none; border: 1px solid #ff5733; color: #ff5733; padding: 5px 15px; border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+
+        /* 갤러리 그리드 */
         .gallery-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
+            gap: 30px; max-width: 1200px; margin: 0 auto 50px auto; padding: 20px;
         }
-         /* 사진이 절대 잘리지 않게 하는 강력한 설정 */
-
-
-        .work-item {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .work-item:hover { transform: translateY(-10px); }
-
-        .work-item img {
-         width: 100% !important;   /* 가로를 상자에 꽉 맞춤 */
-         height: auto !important;    /* 높이를 사진 비율에 따라 무조건 자동으로 조절 */
-         max-height: none !important; /* 높이 제한을 완전히 해제 */
-        display: block;
-        object-fit: contain;       /* 사진 전체가 상자 안에 다 들어오게 함 */
-        border-bottom: 1px solid #eee; /* 사진과 글자 사이 구분선 */
-}
-        /* 모바일 전용 추가 설정 */
-        @media (max-width: 600px) {
-        .work-item {
-        margin-bottom: 30px; /* 카드 사이 간격을 넉넉히 */
-    }
-        .gallery-container {
-        padding: 10px; /* 좌우 여백을 줄여 사진을 더 크게 */
-    }
-       
-    .work-info h2 {
-        font-size: 1.1rem; /* 제목 크기 살짝 줄임 */
-    }
-}
+        .work-item { background: var(--card-bg); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; }
+        .work-item img { width: 100%; height: auto; display: block; }
+        .work-info { padding: 20px; }
+        .work-info h2 { font-size: 1.2rem; margin-bottom: 10px; color: #ff5733; }
+        .work-info p { font-size: 0.95rem; line-height: 1.6; opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -59,49 +55,77 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">← 안치영 포트폴리오</a>
+            <button class="theme-toggle" onclick="toggleTheme()">다크 모드 전환</button>
         </div>
     </nav>
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterSelection('all')">전체보기</button>
+        <button class="filter-btn" onclick="filterSelection('수채화')">수채화</button>
+        <button class="filter-btn" onclick="filterSelection('유화')">유화</button>
+        <button class="filter-btn" onclick="filterSelection('풍경')">풍경</button>
+        <button class="filter-btn" onclick="filterSelection('인물')">인물</button>
+    </div>
 
     <div class="gallery-container" id="galleryGrid"></div>
 
     <script>
-        // ★ 이 부분이 안치영 님의 '작품 관리 대장'입니다!
-        // 새로운 작품이 생기면 아래 { } 덩어리 하나만 복사해서 추가하면 됩니다.
+        // ★ 데이터 관리: category 항목을 추가했습니다!
         const myWorks = [
-            {
-                title: "슬픈연가",
-                desc: "이 작품은 코딩과 예술의 조화를 생각하며 만들었습니다.",
-                img: "슬픈연가.jpg"
-            },
-            {
-                title: "무희의 무상",
-                desc: "푸른 색조를 사용하여 고요하고 슬픈 감정을 표현했습니다.",
-                img: "무희의 무상.jpg"
-                
-            },
-            {
-                title: "잃어버린시간",
-                desc: "파이썬 분석 결과를 시각화한 현대적인 작품입니다.",
-                img: "잃어버린시간.jpg"
-            }
+            { title: "슬픈연가", desc: "인물의 감정을 섬세하게 담아낸 작품입니다.", img: "슬픈연가.jpg", category: ["유화","인물"] },
+            { title: "무희의 무상", desc: "화려한 춤사위 뒤의 고요함을 표현했습니다.", img: "무희의 무상.jpg", category: ["유화","인물" ]},
+            { title: "잃어버린시간", desc: "복잡한 현대 사회의 단면을 그린 풍경입니다.", img: "잃어버린시간.jpg", category:["유화", "풍경"] }
+            // 여기에 { title: "제목", desc: "설명", img: "파일", category: "유화" } 식으로 추가하세요.
         ];
 
-        // 대장에 적힌 목록을 화면에 자동으로 그려주는 마법의 코드
-        const grid = document.getElementById('galleryGrid');
-        
-        myWorks.forEach(work => {
+        function displayWorks(filter) {
+             const grid = document.getElementById('galleryGrid');
+             grid.innerHTML = "";
+    
+            // ★ 수정된 필터 로직: 'includes'를 사용하여 포함 여부를 확인합니다.
+            const filteredWorks = filter === 'all' 
+            ? myWorks 
+            : myWorks.filter(w => w.category.includes(filter));
+    
+                filteredWorks.forEach(work => {
             const card = `
-                <div class="work-item">
-                    <img src="${work.img}" alt="${work.title}">
-                    <div class="work-info">
-                        <h2>${work.title}</h2>
-                        <p>${work.desc}</p>
-                    </div>
+             <div class="work-item">
+                <img src="${work.img}" alt="${work.title}">
+                <div class="work-info">
+                    <h2>${work.title}</h2>
+                    <p>${work.desc}</p>
                 </div>
-            `;
-            grid.innerHTML += card;
-        });
-    </script>
+                </div>
+        `;
+             grid.innerHTML += card;
+    });
+}
 
+        // 필터링 기능
+        function filterSelection(c) {
+            displayWorks(c);
+            const btns = document.getElementsByClassName("filter-btn");
+            for (let btn of btns) {
+                btn.classList.remove("active");
+                if (btn.innerText === c || (c === 'all' && btn.innerText === '전체보기')) {
+                    btn.classList.add("active");
+                }
+            }
+        }
+
+        // 다크 모드 토글
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        // 초기 실행
+        displayWorks('all');
+    </script>
 </body>
 </html>
