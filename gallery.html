@@ -22,6 +22,33 @@
         .work-info p { color: #666; line-height: 1.8; }
 
         footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+
+            /* 메뉴 바를 메인과 똑같이 예쁘게 고치기 */
+        .navbar {
+        background-color: white;
+        height: 60px;
+         display: flex;
+         justify-content: center;
+          align-items: center;
+         position: sticky;
+         top: 0;
+         z-index: 1000;
+         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+        .nav-container {
+        display: flex;
+        justify-content: space-between; /* 양 끝으로 벌리기 */
+        align-items: center;
+        width: 100%;
+        max-width: 900px;
+        padding: 0 20px;
+}
+        .nav-logo {
+        font-weight: bold;
+        text-decoration: none;
+        color: #ff5733; /* 주황색 로고 */
+        font-size: 1.2rem;
+}
     </style>
 </head>
 <body>
