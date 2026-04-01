@@ -49,6 +49,14 @@
         .work-info h2 { font-size: 1.2rem; margin-bottom: 10px; color: #ff5733; }
         .work-info p { font-size: 0.95rem; line-height: 1.6; opacity: 0.8; }
     </style>
+    // 갤러리 검색어 홍보
+    <meta name="description" content="서울디지털대학 회화과, 안치영의 수채화, 유화, 풍경, 인물 작품 갤러리입니다.">
+    <meta name="keywords" content="안치영, 포트폴리오, 수채화, 유화, 갤러리, 미술작품, 인물화,서울디지털대학">
+    <meta name="author" content="안치영">
+
+    <meta property="og:title" content="안치영의 프리미엄 작품 갤러리">
+    <meta property="og:description" content="멋진 작품들과 다크 모드 갤러리를 감상해보세요.">
+    <meta property="og:image" content="port1.jpg"> <meta property="og:url" content="https://a01072922471-jpg.github.io/my-portfolio/gallery.html">
 </head>
 <body>
 
@@ -97,12 +105,15 @@
                 filteredWorks.forEach(work => {
             const card = `
              <div class="work-item">
-                <img src="${work.img}" alt="${work.title}">
-                <div class="work-info">
-                    <h2>${work.title}</h2>
-                    <p>${work.desc}</p>
-                </div>
-                </div>
+            <img src="${work.img}" alt="${work.title}">
+            <div class="work-info">
+            <div style="margin-bottom: 8px;">
+                ${work.category.map(cat => `<span style="font-size: 0.7rem; background: #444; color: #eee; padding: 2px 8px; border-radius: 10px; margin-right: 5px;">#${cat}</span>`).join('')}
+            </div>
+            <h2>${work.title}</h2>
+            <p>${work.desc}</p>
+             </div>
+            </div>
         `;
              grid.innerHTML += card;
     });
@@ -135,4 +146,7 @@
         displayWorks('all');
     </script>
 </body>
+    <div style="text-align: center; margin-top: 20px;">
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fa01072922471-jpg.github.io%2Fmy-portfolio&count_bg=%23FF5733&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=방문자수&edge_flat=false" alt="Hits">
+    </div>
 </html>
